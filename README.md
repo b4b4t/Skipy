@@ -1,13 +1,22 @@
 # Skipy
 
+                 (`-').-> <-.(`-')    _       _  (`-')            
+                 ( OO)_    __( OO)   (_)      \-.(OO )      .->   
+                (_)--\_)  '-'. ,--.  ,-(`-')  _.'    \  ,--.'  ,-.
+                /    _ /  |  .'   /  | ( OO) (_...--'' (`-')'.'  /
+                \_..`--.  |      /)  |  |  ) |  |_.' | (OO \    / 
+                .-._)   \ |  .   '  (|  |_/  |  .___.'  |  /   /) 
+                \       / |  |\   \  |  |'-> |  |       `-/   /`  
+                 `-----'  `--' '--'  `--'    `--'         `--'   
+
 Tool to handle database updates on a project.
 Build or use the provider adapted to your project and use the Skipy cli to update your database.
 
 ### Usage
 
-**`status`** : display the list of the updates with their status. ex: ./skipy status
+**`status`** : display the list of the updates with their status. ex: `./skipy status` or `skipy.exe status`
 
-**`update <ID>`** : update the database to the specified update. ex: ./skipy update UpdateID 
+**`update <ID>`** : update the database to the specified update. ex: `./skipy update UpdateID` or `skipy.exe update UpdateID`
 
 ### Use an update provider
 
