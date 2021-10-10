@@ -62,7 +62,6 @@ Example (with the Entity Framework provider available in the `Skipy.EntityFramew
 
 ```C#
 
-// EntityFrameworkProvider is available in the 
 public class MyModule : Module<EntityFrameworkProvider<MyDbContext>>
 {
     public override void ConfigureServices(IServiceCollection serviceCollection, IConfiguration configuration)
