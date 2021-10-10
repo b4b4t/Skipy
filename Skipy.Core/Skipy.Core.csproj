@@ -5,6 +5,7 @@
     <Authors>Baptiste Coppéré</Authors>
     <Description>Core library to use a Skipy console.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/b4b4t/Skipy</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
