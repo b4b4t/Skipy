@@ -64,17 +64,17 @@ Example (with the Entity Framework provider available in the `Skipy.EntityFramew
 
 // EntityFrameworkProvider is available in the 
 public class MyModule : Module<EntityFrameworkProvider<MyDbContext>>
+{
+    public override void ConfigureServices(IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        public override void ConfigureServices(IServiceCollection serviceCollection, IConfiguration configuration)
-        {
-            base.ConfigureServices(serviceCollection, configuration);
+        base.ConfigureServices(serviceCollection, configuration);
 
-            // Database connection
-            serviceCollection.AddDbContext<MyDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        // Database connection
+        serviceCollection.AddDbContext<MyDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            // Update provider
-            serviceCollection.AddScoped<IUpdateProvider, EntityFrameworkProvider<MyDbContext>>();
-        }
+        // Update provider
+        serviceCollection.AddScoped<IUpdateProvider, EntityFrameworkProvider<MyDbContext>>();
     }
+}
 ```
