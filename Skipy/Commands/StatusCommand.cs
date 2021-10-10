@@ -18,19 +18,22 @@ namespace Skipy.Commands
 
         public override int Execute(CommandContext context)
         {
-            IList<Update> updateList = _updateProvider.LoadUpdateList();
+            AnsiConsole.Status()
+                .Start("Loading ...", ctx =>
+                {
+                    IList<Update> updateList = _updateProvider.LoadUpdateList();
 
-            var table = new Table();
-            table.Centered();
+                    var table = new Table();
 
-            table.AddColumns("ID", "Name", "Status");
+                    table.AddColumns("ID", "Name", "Status");
 
-            foreach (Update update in updateList.OrderByUpdate())
-            {
-                table.AddRow(update.Id, update.Name, update.IsInstalled ? "[green]Installed[/]" : "[red]Not installed[/]");
-            }
+                    foreach (Update update in updateList.OrderByUpdate())
+                    {
+                        table.AddRow(update.Id, update.Name, update.IsInstalled ? "[green]Installed[/]" : "[red]Not installed[/]");
+                    }
 
-            AnsiConsole.Render(table);
+                    AnsiConsole.Render(table);
+                });
 
             return 0;
         }

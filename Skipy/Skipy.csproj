@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <ApplicationIcon />
+    <StartupObject />
+    <Authors>Baptiste Coppéré</Authors>
+    <Description>A simple console to handle the database updates.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
-    <None Remove="Spectre.Console" />
-    <None Remove="Commands\" />
-    <None Remove="Microsoft.Extensions.DependencyInjection" />
-    <None Remove="Infrastructure\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Spectre.Console" Version="0.41.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Spectre.Console" Version="0.42.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>

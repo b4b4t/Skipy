@@ -19,20 +19,42 @@ namespace Skipy.Commands
 
         public override int Execute(CommandContext context, Settings settings)
         {
-            string id = settings.Id;
-            IList<Update> updates = _updateProvider.LoadUpdateList();
-
-            if (id is null || !updates.Any(upd => upd.Id == id))
+            if (settings is null)
             {
-                AnsiConsole.MarkupLine($"[red]Missing update corresponding to the given ID[/]");
+                throw new ArgumentNullException(nameof(settings));
+            }
 
-                return 0;
+            Update update;
+            IList<Update> updates = null;
+
+            AnsiConsole.Status()
+                .Start("Loading migrations ...", ctx =>
+                {
+                    updates = _updateProvider.LoadUpdateList();
+                });
+
+            if (!string.IsNullOrEmpty(settings.Id))
+            {
+                update = updates.SingleOrDefault(u => u.Id == settings.Id);
+            }
+            else if (!string.IsNullOrEmpty(settings.Name))
+            {
+                update = updates.SingleOrDefault(u => u.Id == settings.Name);
+            }
+            else
+            {
+                if (updates is null || updates.Count == 0)
+                {
+                    throw new InvalidOperationException("No migration found");
+                }
+
+                update = _updateProvider.SelectUpdate(updates);
             }
 
             AnsiConsole.Status()
                 .Start("Updating ...", ctx =>
                 {
-                    ExecuteUpdate(id);
+                    ExecuteUpdate(update);
                 });
 
             return 0;
@@ -41,12 +63,12 @@ namespace Skipy.Commands
         /// <summary>
         /// Apply the update.
         /// </summary>
-        /// <param name="id">Update ID</param>
-        private void ExecuteUpdate(string id)
+        /// <param name="update">Update</param>
+        private void ExecuteUpdate(Update update)
         {
             try
             {
-                if (_updateProvider.ExecuteUpdate(id))
+                if (_updateProvider.ExecuteUpdate(update))
                 {
                     AnsiConsole.MarkupLine($"[green]Update done[/]");
                 }

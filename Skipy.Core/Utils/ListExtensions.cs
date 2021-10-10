@@ -16,6 +16,11 @@ namespace Skipy.Core.Utils
             // First parent
             Update update = updates.SingleOrDefault(upd => upd.ParentId is null);
 
+            if (update is null)
+            {
+                return new List<Update>();
+            }
+
             IList<Update> sortedList = new List<Update>(updates.Count) { update };
 
             while (update != null)

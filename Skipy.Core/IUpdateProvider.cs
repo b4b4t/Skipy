@@ -14,8 +14,15 @@ namespace Skipy.Core
         /// <summary>
         /// Set the database to a specified update.
         /// </summary>
-        /// <param name="updateId">Update Id</param>
+        /// <param name="update">Update</param>
         /// <returns></returns>
-        bool ExecuteUpdate(string updateId);
+        bool ExecuteUpdate(Update update);
+
+        /// <summary>
+        /// Select an update.
+        /// </summary>
+        /// <param name="updates">Update list</param>
+        /// <returns>Selected update</returns>
+        Update SelectUpdate(IList<Update> updates);
     }
 }

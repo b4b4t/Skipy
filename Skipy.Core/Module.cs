@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Skipy.Core
 {
-    public class Module<T> : IModule where T : class, IUpdateProvider, new() 
+    public class Module<T> : IModule where T : class, IUpdateProvider
     {
-        public virtual string Name => throw new NotImplementedException();
-
-        public virtual void ConfigureServices(IServiceCollection serviceCollection)
+        /// <inheritdoc cref="IModule.ConfigureServices(IServiceCollection, IConfiguration)" />
+        public virtual void ConfigureServices(IServiceCollection serviceCollection, IConfiguration configuration)
         {
             serviceCollection.AddScoped<IUpdateProvider, T>();
         }
