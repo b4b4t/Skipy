@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -24,7 +23,9 @@ namespace Skipy.EntityFramework.Provider
         {
             if (update is null)
             {
-                throw new InvalidOperationException("The migration was not found");
+                AnsiConsole.WriteLine("[red]The migration was not found[/]");
+
+                return false;
             }
 
             _dbContext.GetInfrastructure().GetService<IMigrator>().Migrate(update.Name);

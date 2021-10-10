@@ -39,13 +39,15 @@ namespace Skipy.Commands
             }
             else if (!string.IsNullOrEmpty(settings.Name))
             {
-                update = updates.SingleOrDefault(u => u.Id == settings.Name);
+                update = updates.SingleOrDefault(u => u.Name == settings.Name);
             }
             else
             {
                 if (updates is null || updates.Count == 0)
                 {
-                    throw new InvalidOperationException("No migration found");
+                    AnsiConsole.WriteLine("[red]No migration found[/]");
+
+                    return 0;
                 }
 
                 update = _updateProvider.SelectUpdate(updates);
