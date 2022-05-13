@@ -32,7 +32,7 @@ namespace Skipy.Commands
                         table.AddRow(update.Id, update.Name, update.IsInstalled ? "[green]Installed[/]" : "[red]Not installed[/]");
                     }
 
-                    AnsiConsole.Render(table);
+                    AnsiConsole.Write(table);
                 });
 
             return 0;
