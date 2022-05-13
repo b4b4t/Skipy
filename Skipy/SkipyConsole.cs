@@ -34,8 +34,8 @@ namespace Skipy
             _configuration = configuration ?? GetConfiguration();
         }
 
-        /// <inheritdoc cref="ISkipyConsole.Start(string[])" />
-        public void Start(string[] args)
+        /// <inheritdoc cref="ISkipyConsole.Start(string[], Action{IConfigurator})" />
+        public void Start(string[] args, Action<IConfigurator> configuration = null)
         {
             string header = @"
                  (`-').-> <-.(`-')    _       _  (`-')            
@@ -63,6 +63,11 @@ namespace Skipy
                 config.AddCommand<UpdateCommand>("update")
                     .WithDescription("Update the database to an update");
             });
+
+            if (configuration is not null)
+            {
+                app.Configure(configuration);
+            }
 
             try
             {
