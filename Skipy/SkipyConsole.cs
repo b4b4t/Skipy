@@ -16,7 +16,11 @@ namespace Skipy
         private static readonly string CurrentDirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         private readonly IServiceCollection _serviceCollection;
-        private IConfiguration _configuration;
+
+        /// <summary>
+        /// Configuration
+        /// </summary>
+        public readonly IConfiguration _configuration;
 
         /// <summary>
         /// Service collection
